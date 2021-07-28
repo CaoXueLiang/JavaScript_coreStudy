@@ -1,6 +1,5 @@
-
- //-----------------------------1. 通过原型实现继承 ----------------------------------/
-   /* //person类
+//-----------------------------1. 通过原型实现继承 ----------------------------------/
+/* //person类
     function Person(name,age,height,favorites){
         this.name = name;
         this.age = age;
@@ -35,58 +34,57 @@
     
      console.log(tmpTeacher.__proto__)
      console.log(tmpTeacher.__proto__.__proto__.__proto__.__proto__) */
- 
 
+//-----------------------------2. 通过Class实现继承 ----------------------------------/
+class Person {
+  constructor(name, age, height) {
+    this.name = name;
+    this.age = age;
+    this.height = height;
+  }
+  greeting() {
+    console.log(`大家好,我是${this.name}`);
+  }
+  introduction() {
+    console.log(
+      `大家好，我是${this.name},今年${this.age}岁，身高${this.height}cm`
+    );
+  }
+}
 
-     //-----------------------------2. 通过Class实现继承 ----------------------------------/
-    class Person{
-        constructor(name,age,height){
-          this.name = name;
-          this.age = age;
-          this.height = height
-        }
-        greeting(){
-            console.log(`大家好,我是${this.name}`)
-        }
-        introduction(){
-            console.log(`大家好，我是${this.name},今年${this.age}岁，身高${this.height}cm`)
-        }
-    }
+const person1 = new Person("李宁", 19, 185);
+console.log(person1);
+person1.greeting();
+person1.introduction();
 
-    const person1 = new Person('李宁',19,185);
-    console.log(person1)
-    person1.greeting()
-    person1.introduction()
+class Teacher extends Person {
+  constructor(name, age, height, subject) {
+    super(name, age, height);
+    this.subject = subject;
+  }
+  greeting() {
+    console.log(`我是${this.name}老师`);
+  }
+  teaching() {
+    console.log(`我教授的科目是${this.subject}`);
+  }
 
+  get tmpSubject() {
+    return this.subject;
+  }
 
-    class Teacher extends Person{
-        constructor(name,age,height,subject){
-            super(name,age,height)
-            this.subject = subject
-        }
-        greeting(){
-          console.log(`我是${this.name}老师`)
-        }
-        teaching(){
-           console.log(`我教授的科目是${this.subject}`)
-       }
+  set tmpSubject(newSubject) {
+    this.subject = newSubject;
+  }
+}
 
-       get tmpSubject(){
-           return this.subject
-       }
-   
-       set tmpSubject(newSubject){
-        this.subject = newSubject;
-       }
-    }
+const teacher1 = new Teacher("李永乐", 40, 180, "数学");
+console.log(teacher1);
+teacher1.greeting();
+teacher1.introduction();
+teacher1.teaching();
+console.log(teacher1 instanceof Teacher);
 
-    const teacher1 = new Teacher('李永乐',40,180,'数学')
-    console.log(teacher1)
-    teacher1.greeting()
-    teacher1.introduction()
-    teacher1.teaching()
-    console.log(teacher1 instanceof Teacher)
-
-    teacher1.subject = '语文'
-    console.log(teacher1)
-    console.log(Object.getPrototypeOf(teacher1))
+teacher1.subject = "语文";
+console.log(teacher1);
+console.log(Object.getPrototypeOf(teacher1));
