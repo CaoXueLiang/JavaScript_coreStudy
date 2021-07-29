@@ -10,7 +10,7 @@ console.log(typeof "字符串");
 console.log(typeof true);
 console.log(typeof undefined);
 console.log(typeof Symbol(""));
-console.log("---------------------------------");
+console.log("-------------------------------------");
 
 //1. `typeof`和`instanceof`相结合判断类型
 function getType(paragram) {
@@ -42,7 +42,7 @@ console.log(getType(myFunction));
 console.log(getType(myObject));
 console.log(getType("我是字符串"));
 console.log(getType(Symbol()));
-console.log("---------------------------------");
+console.log("-------------------------------------");
 
 //2. Object.prototype.toString.call()`判断数据类型
 function getCustomType(obj) {
@@ -50,7 +50,19 @@ function getCustomType(obj) {
 }
 
 console.log(getCustomType([1, 2, 3]));
-console.log("---------------------------------");
+console.log(getCustomType(new Date()));
+console.log(getCustomType({ name: "xiaoming", age: 18 }));
+console.log(getCustomType(/\.css$/));
+console.log(getCustomType(function hanshu() {}));
+console.log(getCustomType(window));
+console.log(getCustomType(document));
+console.log(getCustomType("我是字符串"));
+console.log(getCustomType(1));
+console.log(getCustomType(undefined));
+console.log(getCustomType(null));
+console.log(getCustomType(false));
+console.log(getCustomType(Symbol.for("xiaoming")));
+console.log("-------------------------------------");
 
 //3. 手写`instanceof`的实现
 
@@ -60,7 +72,7 @@ console.log("---------------------------------");
 
 function customInstance_of(leftValue, rightValue) {
   let rightproto = rightValue.prototype;
-  let leftProto = leftValue.__proto__;
+  let leftProto = Object.getPrototypeOf(leftValue);
   while (true) {
     if (leftProto === null) {
       return false;
@@ -68,7 +80,7 @@ function customInstance_of(leftValue, rightValue) {
     if (leftProto === rightproto) {
       return true;
     }
-    leftProto = leftProto.__proto__;
+    leftProto = Object.getPrototypeOf(leftProto);
   }
 }
 
