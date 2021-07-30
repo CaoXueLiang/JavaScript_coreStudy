@@ -85,22 +85,20 @@ console.log("--------------");
 
 //--------------------------------- 第四种：原型式继承 -----------------------------------/
 //缺点: 多个实例的引用类型属性指向相同的内存
-function parent4() {
-  this.name = "parent4";
-  this.friends = ["p1", "p2", "p3"];
-  this.getName = function () {
+let parent4 = {
+  name: "parent4",
+  friends: ["p1", "p2", "p3"],
+  getName: function () {
     return this.name;
-  };
-}
+  },
+};
 
-let person4 = Object.create(new parent4());
+let person4 = Object.create(parent4);
 person4.name = "tom";
 person4.friends.push("lucky");
 
-let person5 = Object.create(new parent4());
+let person5 = Object.create(parent4);
 person5.friends.push("jerry");
-
-Object.getPrototypeOf(person5).name = "hhhhhhh";
 
 console.log(person4);
 console.log(person5);
