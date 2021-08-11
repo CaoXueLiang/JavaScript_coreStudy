@@ -84,7 +84,7 @@ Promise.allSettled([getUrlResult('hhhhhh'), getUrlResult('eeeeeee'), getUrlResul
 
 //any: 只要一个参数promise对象的实例变成fulfilled，最后any返回的实例就会变成fulfilled。
 //只有当所有参数promise实例都返回rejected，最后any实例返回的是rejected状态
-Promise.any([getUrlResult(2222222), getUrlResult('xiaoming'), getUrlResult(9999)])
+Promise.any([getUrlResult('hehe'), getUrlResult('xiaoming'), getUrlResult(9999)])
   .then((res) => {
     console.log(res);
   })
