@@ -1,2 +1,2 @@
 # javaScriptCoreStudy
-前端面试相关，手写代码
+拉钩教育 《JavaScript核心原理精讲》
